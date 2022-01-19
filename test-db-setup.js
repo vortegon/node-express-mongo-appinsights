@@ -16,8 +16,10 @@ global.newId = () => {
 const remove = collection =>
   new Promise((resolve, reject) => {
     collection.remove(err => {
-      if (err) return reject(err);
-      resolve();
+      if (err) {
+        return reject(err);
+      }
+      return resolve();
     });
   });
 

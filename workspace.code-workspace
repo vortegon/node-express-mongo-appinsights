@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"sonarlint.connectedMode.project": {
+			"projectKey": "vortegon_node-express-mongo-appinsights"
+		}
+	}
+}
