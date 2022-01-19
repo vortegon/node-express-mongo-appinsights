@@ -13,9 +13,9 @@ global.newId = () => {
   return mongoose.Types.ObjectId();
 };
 
-const remove = (collection) =>
+const remove = collection =>
   new Promise((resolve, reject) => {
-    collection.remove((err) => {
+    collection.remove(err => {
       if (err) return reject(err);
       resolve();
     });
@@ -47,11 +47,13 @@ beforeEach(async done => {
   }
   done();
 });
-afterEach(async (done) => {
+
+afterEach(async done => {
   await mongoose.connection.db.dropDatabase();
   await mongoose.disconnect();
   return done();
 });
-afterAll((done) => {
+
+afterAll(done => {
   return done();
 });
