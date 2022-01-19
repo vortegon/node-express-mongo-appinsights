@@ -14,7 +14,8 @@
   "watch": [
     "src/**/*.js",
     "src/**/*.graphql",
-    "src/**/*.gql"
+    "src/**/*.gql",
+    ".env"
   ],
   "env": {
     "NODE_ENV": "development"
