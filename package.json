@@ -19,7 +19,7 @@
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "express-winston": "^4.2.0",
-    "mongoose": "^5.11.15",
+    "mongoose": "^6.1.7",
     "morgan": "^1.10.0",
     "winston": "^3.4.0",
     "winston-console-format": "^1.0.8"

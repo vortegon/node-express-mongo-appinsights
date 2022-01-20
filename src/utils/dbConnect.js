@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import logger from './logger.js';
 
-const dbConnect = async (url = process.env.DATABASE, opts = {}) => {
+const dbConnect = async (url = process.env.DATABASE) => {
   mongoose.connection.on('error', (err) => {
     logger.error(err);
   });
@@ -27,13 +27,7 @@ const dbConnect = async (url = process.env.DATABASE, opts = {}) => {
   });
 
   try {
-    await mongoose.connect(url, {
-      ...opts,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true
-    });
+    await mongoose.connect(url);
   } catch (error) {
     logger.error(error);
   }
