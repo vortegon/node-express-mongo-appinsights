@@ -1,10 +1,9 @@
-#!/usr/bin/env node
-import {} from 'dotenv/config';
-import * as appInsights from 'applicationinsights';
+import 'dotenv/config';
+import appInsights from 'applicationinsights';
 import http from 'http';
-import app from '../app';
-import dbConnect from '../utils/dbConnect';
-import logger from '../utils/logger';
+import app from '../app.js';
+import dbConnect from '../utils/dbConnect.js';
+import logger from '../utils/logger.js';
 
 /**
  * Setup app insights telemetry.
@@ -24,7 +23,9 @@ const server = http.createServer(app);
 run();
 
 async function run() {
-  logger.info('You can contribute with this project on this repo: https://github.com/vortegon/node-express-mongo-appinsights');
+  logger.info(
+    'You can contribute with this project on this repo: https://github.com/vortegon/node-express-mongo-appinsights'
+  );
   await dbConnect();
   server.listen(app.get('port'));
   server.on('error', onError);
@@ -60,13 +61,10 @@ function onError(error) {
 
 function enableTelemetry() {
   if (process.env.APPINSIGHTS_INSTRUMENTATIONKEY) {
-    appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY).start();
+    appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY);
+    appInsights.defaultClient.setAutoPopulateAzureProperties(true);
+    appInsights.start();
     logger.info(`App Insights enabled, sending telemetry...`);
-    if (process.env.APP_NAME) {
-      appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = process.env.APP_NAME;
-    } else {
-      logger.info(`env variable "APP_NAME" not found, "default-app-name" will be used by the logger`);
-    }
   } else {
     logger.info(`App Insights disabled, instrumentation key not provided`);
   }

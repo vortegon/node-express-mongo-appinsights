@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import logger from './logger';
+import logger from './logger.js';
 
 const dbConnect = async (url = process.env.DATABASE, opts = {}) => {
-  mongoose.connection.on('error', err => {
+  mongoose.connection.on('error', (err) => {
     logger.error(err);
   });
 

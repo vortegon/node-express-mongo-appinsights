@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import { catchErrors } from '../../utils/errorHandler';
-import itemControllers from './itemControllers';
+import { catchErrors } from '../../utils/errorHandler.js';
+import itemControllers from './itemControllers.js';
 
 const itemRouter = Router();
 
 // /api/item
-itemRouter
-  .route('/')
-  .get(catchErrors(itemControllers.getMany))
-  .post(catchErrors(itemControllers.createOne));
+itemRouter.route('/').get(catchErrors(itemControllers.getMany)).post(catchErrors(itemControllers.createOne));
 
 // /api/item/:id
 itemRouter

@@ -1,20 +1,20 @@
-import { json, urlencoded } from 'body-parser';
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import expressWinston from 'express-winston';
-import healthRouter from './resources/health/healthRouter';
-import itemRouter from './resources/item/itemRouter';
-import listRouter from './resources/list/listRouter';
-import { notFound, developmentErrors, productionErrors } from './utils/errorHandler';
-import logger from './utils/logger';
+import healthRouter from './resources/health/healthRouter.js';
+import itemRouter from './resources/item/itemRouter.js';
+import listRouter from './resources/list/listRouter.js';
+import { notFound, developmentErrors, productionErrors } from './utils/errorHandler.js';
+import logger from './utils/logger.js';
 
 const app = express();
 
 app.disable('x-powered-by');
 app.use(cors());
-app.use(json());
-app.use(urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined', { stream: logger.stream }));
 app.use(
   expressWinston.logger({
@@ -44,4 +44,4 @@ if (app.get('env') === 'development') {
 // production error handler
 app.use(productionErrors);
 
-module.exports = app;
+export default app;

@@ -1,4 +1,4 @@
-import { crudControllers } from '../../utils/crud';
-import List from './listModel';
+import { crudControllers } from '../../utils/crud.js';
+import List from './listModel.js';
 
 export default crudControllers(List);

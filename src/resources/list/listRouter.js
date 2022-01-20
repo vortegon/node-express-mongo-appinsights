@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import { catchErrors } from '../../utils/errorHandler';
-import listControllers from './listControllers';
+import { catchErrors } from '../../utils/errorHandler.js';
+import listControllers from './listControllers.js';
 
 const listRouter = Router();
 
 // /api/list
-listRouter
-  .route('/')
-  .get(catchErrors(listControllers.getOne))
-  .post(catchErrors(listControllers.createOne));
+listRouter.route('/').get(catchErrors(listControllers.getOne)).post(catchErrors(listControllers.createOne));
 
 // /api/list/:id
 listRouter
