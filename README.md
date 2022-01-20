@@ -43,7 +43,6 @@ Seed repository with all the files and folders necessary to start working on the
 
 ```bash
 npm install
-npm build
 ```
 
 Clone the `env.example` file as `.env` and fill it with all your local environment variables.
