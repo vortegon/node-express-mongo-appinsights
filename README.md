@@ -4,13 +4,13 @@
 
 ## Table of contents
 
-- [Project Description](readme-template.md/#project-description)
-- [Installation](readme-template.md/#installation)
-- [Structure](readme-template.md/#structure)
-- [Usage](readme-template.md/#usage)
-- [Azure Pipeline](readme-template.md/#pipeline)
-- [Unit test](readme-template.md/#unittest)
-- [References](readme-template.md/#references)
+- [Project Description](README.md/#project-description)
+- [Installation](README.md/#installation)
+- [Structure](README.md/#structure)
+- [Usage](README.md/#usage)
+- [Azure Pipeline](README.md/#pipeline)
+- [Unit test](README.md/#unittest)
+- [References](README.md/#references)
 
 ## Project description
 
