@@ -37,8 +37,7 @@ beforeAll(async (done) => {
 });
 
 beforeEach(async (done) => {
-  async function clearDB() {
-    logger.info(`cleaning DB`);
+  function clearDB() {
     return Promise.all(_.map(mongoose.connection.collections, (c) => remove(c)));
   }
 
@@ -48,8 +47,14 @@ beforeEach(async (done) => {
 });
 
 afterAll(async (done) => {
-  logger.info(`deleting database`);
-  await mongoose.connection.db.dropDatabase();
-  await mongoose.disconnect();
-  return done();
+  try {
+    logger.info(`deleting database`);
+    await mongoose.connection.db.dropDatabase();
+    await mongoose.disconnect();
+  } catch (e) {
+    logger.error(e);
+    throw e;
+  }
+
+  done();
 });
