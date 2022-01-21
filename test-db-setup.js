@@ -21,17 +21,6 @@ const remove = (collection) =>
     });
   });
 
-beforeEach(async (done) => {
-  async function clearDB() {
-    logger.info(`cleaning DB`);
-    return Promise.all(_.map(mongoose.connection.collections, (c) => remove(c)));
-  }
-
-  await clearDB();
-
-  done();
-});
-
 beforeAll(async (done) => {
   try {
     const db = cuid();
@@ -47,11 +36,20 @@ beforeAll(async (done) => {
   done();
 });
 
+beforeEach(async (done) => {
+  async function clearDB() {
+    logger.info(`cleaning DB`);
+    return Promise.all(_.map(mongoose.connection.collections, (c) => remove(c)));
+  }
+
+  await clearDB();
+
+  done();
+});
+
 afterAll(async (done) => {
   logger.info(`deleting database`);
   await mongoose.connection.db.dropDatabase();
   await mongoose.disconnect();
   return done();
 });
-
-// afterAll((done) => done());
