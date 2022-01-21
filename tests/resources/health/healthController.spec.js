@@ -1,5 +1,6 @@
-const request = require('supertest');
-const app = require('../../../src/app.js').default;
+import request from 'supertest';
+import app from '../../../src/app.js';
+// const request = require('supertest');
 
 jest.mock('../../../src/utils/logger');
 

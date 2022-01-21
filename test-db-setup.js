@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import cuid from 'cuid';
 import _ from 'lodash';
-import Item from './src/resources/item/itemModel';
-import List from './src/resources/list/listModel';
-import logger from './src/utils/logger';
+import Item from './src/resources/item/itemModel.js';
+import List from './src/resources/list/listModel.js';
+import logger from './src/utils/logger.js';
 
 const models = { List, Item };
 
@@ -14,39 +14,44 @@ global.newId = () => mongoose.Types.ObjectId();
 const remove = (collection) =>
   new Promise((resolve, reject) => {
     collection.deleteMany({}, (err) => {
-      if (err) return reject(err);
+      if (err) {
+        return reject(err);
+      }
       resolve();
     });
   });
 
 beforeEach(async (done) => {
-  const db = cuid();
-  function clearDB() {
+  async function clearDB() {
     logger.info(`cleaning DB`);
     return Promise.all(_.map(mongoose.connection.collections, (c) => remove(c)));
   }
 
-  if (mongoose.connection.readyState === 0) {
-    try {
-      const tempDB = url.includes('?') ? url.replace(/\?([^?]*)$/, `${db}?$1`) : url + db;
-      await mongoose.connect(tempDB);
-      await clearDB();
-      await Promise.all(Object.keys(models).map((name) => models[name].init()));
-    } catch (e) {
-      logger.error(e);
-      throw e;
-    }
-  } else {
-    await clearDB();
-    logger.info(`connection readyState`);
-  }
+  await clearDB();
+
   done();
 });
 
-afterEach(async (done) => {
+beforeAll(async (done) => {
+  try {
+    const db = cuid();
+    const tempDB = url.includes('?') ? url.replace(/\?([^?]*)$/, `${db}?$1`) : url + db;
+    logger.info(`creating database: ${db}`);
+    await mongoose.connect(tempDB);
+    await Promise.all(Object.keys(models).map((name) => models[name].init()));
+  } catch (e) {
+    logger.error(e);
+    throw e;
+  }
+
+  done();
+});
+
+afterAll(async (done) => {
+  logger.info(`deleting database`);
   await mongoose.connection.db.dropDatabase();
   await mongoose.disconnect();
   return done();
 });
 
-afterAll((done) => done());
+// afterAll((done) => done());

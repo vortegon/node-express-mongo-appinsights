@@ -1,4 +1,4 @@
-import { catchErrors, notFound, developmentErrors, productionErrors } from '../../../src/utils/errorHandler';
+import { catchErrors, notFound, developmentErrors, productionErrors } from '../../../src/utils/errorHandler.js';
 
 describe('Error Handler', () => {
   describe('catchErrors', () => {

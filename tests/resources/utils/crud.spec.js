@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import { getOne, getMany, createOne, updateOne, removeOne } from '../../../src/utils/crud';
-import List from '../../../src/resources/list/listModel';
+import { getOne, getMany, createOne, updateOne, removeOne } from '../../../src/utils/crud.js';
+import List from '../../../src/resources/list/listModel.js';
 
 describe('crud controllers', () => {
   describe('getOne', () => {
