@@ -1,10 +1,9 @@
-/* eslint-disable jest/valid-describe */
 import mongoose from 'mongoose';
-import { getOne, getMany, createOne, updateOne, removeOne } from '../../src/utils/crud';
-import List from '../../src/resources/list/listModel';
+import { getOne, getMany, createOne, updateOne, removeOne } from '../../../src/utils/crud';
+import List from '../../../src/resources/list/listModel';
 
 describe('crud controllers', () => {
-  describe('getOne', async () => {
+  describe('getOne', () => {
     test('Given an existing list when I get it by id then it is listed', async () => {
       expect.assertions(2);
 
@@ -43,7 +42,7 @@ describe('crud controllers', () => {
     });
   });
 
-  describe('getMany', async () => {
+  describe('getMany', () => {
     test('Given and existing list when I query all lists then all lists are returned', async () => {
       expect.assertions(2);
 
@@ -76,7 +75,7 @@ describe('crud controllers', () => {
     });
   });
 
-  describe('createOne', async () => {
+  describe('createOne', () => {
     test('Given a valid list when I create it then the list is created and returned', async () => {
       expect.assertions(2);
 
@@ -100,7 +99,7 @@ describe('crud controllers', () => {
     });
   });
 
-  describe('updateOne', async () => {
+  describe('updateOne', () => {
     const newName = 'new Name';
     test('Given a valid list when I update it by id then the list is updated and returned', async () => {
       expect.assertions(2);
@@ -146,7 +145,7 @@ describe('crud controllers', () => {
     });
   });
 
-  describe('removeOne', async () => {
+  describe('removeOne', () => {
     test('Given an existing list when I remove ir by id then the list is removed', async () => {
       expect.assertions(2);
 

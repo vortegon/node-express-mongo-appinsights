@@ -1,4 +1,4 @@
-import { catchErrors, notFound, developmentErrors, productionErrors } from '../../src/utils/errorHandler';
+import { catchErrors, notFound, developmentErrors, productionErrors } from '../../../src/utils/errorHandler';
 
 describe('Error Handler', () => {
   describe('catchErrors', () => {
@@ -26,7 +26,7 @@ describe('Error Handler', () => {
       let value = '';
       const req = {};
       const res = {};
-      const next = error => {
+      const next = (error) => {
         value = error.message;
       };
 
