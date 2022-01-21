@@ -7,23 +7,23 @@ const dbConnect = async (url = process.env.DATABASE) => {
   });
 
   mongoose.connection.on('connecting', () => {
-    logger.info('Connecting to cosmosdb...');
+    logger.info('Connecting to MongoDB...');
   });
 
   mongoose.connection.on('connected', () => {
-    logger.info('Connection with cosmosdb stablished successfully');
+    logger.info('Connection with MongoDB stablished successfully');
   });
 
   mongoose.connection.on('disconnected', () => {
-    logger.info('Cosmosdb disconected');
+    logger.info('MongoDB disconected');
   });
 
   mongoose.connection.on('reconnected', () => {
-    logger.info('Cosmosdb reconnected successfully');
+    logger.info('MongoDB reconnected successfully');
   });
 
   mongoose.connection.on('reconnectFailed', () => {
-    logger.error('Reconection with cosmosdb failed');
+    logger.error('Reconection with MongoDB failed');
   });
 
   try {

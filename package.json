@@ -49,6 +49,7 @@
     "setupFilesAfterEnv": [
       "<rootDir>/test-db-setup.js"
     ],
+    "coverageDirectory": "<rootDir>/test-reports/coverage",
     "restoreMocks": true,
     "testResultsProcessor": "jest-sonar-reporter",
     "collectCoverage": true,
@@ -62,5 +63,11 @@
       "lcov",
       "text"
     ]
+  },
+  "jest-junit": {
+    "outputDirectory": "test-reports"
+  },
+  "jestSonar": {
+    "reportPath": "test-reports"
   }
 }
