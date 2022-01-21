@@ -17,7 +17,7 @@ const remove = (collection) =>
       if (err) {
         return reject(err);
       }
-      resolve();
+      return resolve();
     });
   });
 
