@@ -1,6 +1,6 @@
-# EY Node.js API Starter
+# Node.js API Starter
 
-This project was bootstrapped with [CTP-CodeFlow Node.js API Maker](https://dev.azure.com/eysbp/CTP%20-%20Code%20Hub/_apps/hub/EY-Code-Hub.ado-ext-web-hub-flow-qa.code-flow-api-makers).
+
 
 ## Table of contents
 
