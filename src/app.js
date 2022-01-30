@@ -10,8 +10,8 @@ import healthRouter from './resources/health/healthRouter.js';
 import itemRouter from './resources/item/itemRouter.js';
 import listRouter from './resources/list/listRouter.js';
 import logger from './utils/logger.js';
-import * as mongoStore from './resources/oauth/oauth.controllers.js';
-import userRouter from './resources/oauth/oauthUser.router.js';
+import * as mongoStore from './resources/oauth/oauthControllers.js';
+import userRouter from './resources/oauth/oauthUserRouter.js';
 
 const app = express();
 

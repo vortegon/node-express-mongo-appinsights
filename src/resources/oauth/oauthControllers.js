@@ -1,6 +1,6 @@
-import OauthClient from './oauthClient.model.js';
-import OauthToken from './oauthToken.model.js';
-import OauthUser from './oauthUser.model.js';
+import OauthClient from './oauthClientModel.js';
+import OauthToken from './oauthTokenModel.js';
+import OauthUser from './oauthUserModel.js';
 
 export const getAccessToken = (accessToken) => OauthToken.findOne({ accessToken }).lean().exec();
 export const getClient = (clientId, clientSecret) => OauthClient.findOne({ clientId, clientSecret }).lean().exec();
