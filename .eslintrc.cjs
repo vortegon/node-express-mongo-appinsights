@@ -14,6 +14,6 @@ module.exports = {
     'no-use-before-define': ['error', 'nofunc'],
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
     'import/extensions': ['error', 'ignorePackages'],
-    'no-underscore-dangle': ['error', { allow: ['_id', '__v'] }]
+    'no-underscore-dangle': ['error', { allow: ['_id', '__v', '_update'] }]
   }
 };

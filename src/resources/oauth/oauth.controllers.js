@@ -5,9 +5,20 @@ import OauthUser from './oauthUser.model.js';
 export const getAccessToken = (accessToken) => OauthToken.findOne({ accessToken }).lean().exec();
 export const getClient = (clientId, clientSecret) => OauthClient.findOne({ clientId, clientSecret }).lean().exec();
 export const getRefreshToken = (refreshToken) => OauthToken.findOne({ refreshToken }).lean().exec();
-export const getUser = (username, password) => OauthUser.findOne({ username, password }).lean().exec();
 export const revokeToken = (token) => OauthToken.deleteOne(token).lean().exec();
 export const saveToken = async (token, client, user) => OauthToken.create({ ...token, client, user });
+
+export const getUser = async (username, password) => {
+  const user = await OauthUser.findOne({ username }).exec();
+
+  if (user) {
+    if (await user.checkPassword(password)) {
+      return user;
+    }
+    return null;
+  }
+  return user;
+};
 
 export const createUser = async (req, res) => {
   let doc = await OauthUser.create(req.body);
