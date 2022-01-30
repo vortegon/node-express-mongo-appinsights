@@ -14,21 +14,14 @@ import * as mongoStore from './resources/oauth/oauthControllers.js';
 import userRouter from './resources/oauth/oauthUserRouter.js';
 
 const app = express();
-
-app.oauth = new OAuthServer({
-  model: mongoStore
-});
+app.oauth = new OAuthServer({ model: mongoStore });
 
 app.disable('x-powered-by');
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined', { stream: logger.stream }));
-app.use(
-  expressWinston.logger({
-    winstonInstance: logger
-  })
-);
+app.use(expressWinston.logger({ winstonInstance: logger }));
 
 app.use('/', healthRouter);
 app.post('/oauth/token', app.oauth.token());
@@ -38,11 +31,7 @@ app.use('/api/users', userRouter);
 app.use('/api/items', itemRouter);
 app.use('/api/lists', listRouter);
 
-app.use(
-  expressWinston.errorLogger({
-    winstonInstance: logger
-  })
-);
+app.use(expressWinston.errorLogger({ winstonInstance: logger }));
 
 app.use(notFound);
 
