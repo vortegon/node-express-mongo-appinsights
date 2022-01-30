@@ -9,8 +9,5 @@ router.get('/:id', catchErrors(findById));
 router.get('/', catchErrors(find));
 router.delete('/:id', catchErrors(deleteById));
 router.put('/:id', catchErrors(updateById));
-/* 
-
-router.get('/me', catchErrors(me)); */
 
 export default router;
