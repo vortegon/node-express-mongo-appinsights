@@ -1,15 +1,23 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
-import morgan from 'morgan';
 import expressWinston from 'express-winston';
+import morgan from 'morgan';
+import OAuthServer from 'express-oauth-server';
+
+import { notFound, developmentErrors, productionErrors } from './utils/errorHandler.js';
 import healthRouter from './resources/health/healthRouter.js';
 import itemRouter from './resources/item/itemRouter.js';
 import listRouter from './resources/list/listRouter.js';
-import { notFound, developmentErrors, productionErrors } from './utils/errorHandler.js';
 import logger from './utils/logger.js';
+import * as mongoStore from './resources/oauth/oauth.controllers.js';
+import userRouter from './resources/oauth/oauthUser.router.js';
 
 const app = express();
+
+app.oauth = new OAuthServer({
+  model: mongoStore
+});
 
 app.disable('x-powered-by');
 app.use(cors());
@@ -22,10 +30,13 @@ app.use(
   })
 );
 
-// Health endpoint
 app.use('/', healthRouter);
-app.use('/api/item', itemRouter);
-app.use('/api/list', listRouter);
+app.post('/oauth/token', app.oauth.token());
+
+app.use('/api', app.oauth.authenticate());
+app.use('/api/users', userRouter);
+app.use('/api/items', itemRouter);
+app.use('/api/lists', listRouter);
 
 app.use(
   expressWinston.errorLogger({

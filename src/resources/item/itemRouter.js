@@ -10,7 +10,7 @@ itemRouter.route('/').get(catchErrors(itemControllers.getMany)).post(catchErrors
 // /api/item/:id
 itemRouter
   .route('/:id')
-  .get(catchErrors(itemControllers.getOne))
+  .get(catchErrors(itemControllers.findById))
   .put(catchErrors(itemControllers.updateOne))
   .delete(catchErrors(itemControllers.removeOne));
 

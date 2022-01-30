@@ -1,5 +1,5 @@
-export const getOne = (model) => async (req, res) => {
-  const doc = await model.findOne({ _id: req.params.id }).lean().exec();
+export const findById = (model) => async (req, res) => {
+  const doc = await model.findById(req.params.id).lean().exec();
 
   if (!doc) {
     const notFoundError = new Error(`Data not found`);
@@ -10,7 +10,7 @@ export const getOne = (model) => async (req, res) => {
   return res.status(200).json({ data: doc });
 };
 
-export const getMany = (model) => async (req, res) => {
+export const find = (model) => async (req, res) => {
   const docs = await model.find().lean().exec();
 
   if (docs.length === 0) {
@@ -22,9 +22,9 @@ export const getMany = (model) => async (req, res) => {
   return res.status(200).json({ data: docs });
 };
 
-export const createOne = (model) => async (req, res) => {
+export const create = (model) => async (req, res) => {
   const doc = await model.create(req.body);
-  res.status(201).json({ data: doc });
+  res.status(201).json({ data: await deleteMongoProperties(doc) });
 };
 
 export const updateOne = (model) => async (req, res) => {
@@ -65,7 +65,7 @@ export const removeOne = (model) => async (req, res) => {
 export const crudControllers = (model) => ({
   removeOne: removeOne(model),
   updateOne: updateOne(model),
-  getMany: getMany(model),
-  getOne: getOne(model),
-  createOne: createOne(model)
+  find: find(model),
+  findById: findById(model),
+  create: create(model)
 });

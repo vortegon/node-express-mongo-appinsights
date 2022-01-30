@@ -10,7 +10,7 @@ listRouter.route('/').get(catchErrors(listControllers.getMany)).post(catchErrors
 // /api/list/:id
 listRouter
   .route('/:id')
-  .get(catchErrors(listControllers.getOne))
+  .get(catchErrors(listControllers.findById))
   .put(catchErrors(listControllers.updateOne))
   .delete(catchErrors(listControllers.removeOne));
 

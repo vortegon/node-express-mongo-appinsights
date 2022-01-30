@@ -13,6 +13,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-use-before-define': ['error', 'nofunc'],
     'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
-    'import/extensions': ['error', 'ignorePackages']
+    'import/extensions': ['error', 'ignorePackages'],
+    'no-underscore-dangle': ['error', { allow: ['_id', '__v'] }]
   }
 };
