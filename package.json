@@ -21,7 +21,7 @@
     "express": "^4.17.2",
     "express-oauth-server": "^2.0.0",
     "express-winston": "^4.2.0",
-    "mongoose": "^6.1.7",
+    "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "winston": "^3.4.0",
     "winston-console-format": "^1.0.8"
